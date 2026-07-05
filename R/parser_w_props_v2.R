@@ -458,7 +458,7 @@ yed <- extract_yed_graph("resources/musiversum_07.graphml")
 yed$relations
 yed$node_properties_long
 yed$relation_with_properties
-# 
-# write_csv(yed$relations, "yed_relations.csv")
-# write_csv(yed$node_properties_long, "yed_node_properties.csv")
-# write_csv(yed$relation_with_properties, "yed_relations_with_properties.csv")
+
+write_csv(yed$relations, "resources/yed_relations.csv")
+write_csv(yed$node_properties_long, "resources/yed_node_properties.csv")
+write_csv(yed$relation_with_properties, "resources/yed_relations_with_properties.csv")
