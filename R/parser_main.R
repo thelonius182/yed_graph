@@ -32,8 +32,10 @@ musiversum_relations <- musiversum$relations |>
 
 musiversum_properties <- musiversum$node_properties_long |> 
   select(
-    node_label = owner_label,
-    property_source,
+    owner_label,
     property_label,
     outward_facing
   ) 
+
+write_delim(x = musiversum_relations, file = "resources/musiversum_relations.tsv", delim = "\t")
+write_delim(x = musiversum_properties, file = "resources/musiversum_properties.tsv", delim = "\t")
