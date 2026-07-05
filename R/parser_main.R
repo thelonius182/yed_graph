@@ -13,9 +13,27 @@ legend <- extract_legend(graph)
 relations <- extract_relations(graph)
 properties <- extract_properties(graph = graph, property_gap_factor = 1.125)
 
-assemble_outputs(
+musiversum <- assemble_outputs(
   graph = graph,
   relations = relations,
   properties = properties,
   legend = legend
 )
+
+musiversum_relations <- musiversum$relations |> 
+  select(
+  source_label,
+  source_origin = source_data_element_source,
+  relation_label,
+  target_label,
+  target_origin = target_data_element_source
+  ) |> 
+  arrange(source_label, relation_label, target_label)
+
+musiversum_properties <- musiversum$node_properties_long |> 
+  select(
+    node_label = owner_label,
+    property_source,
+    property_label,
+    outward_facing
+  ) 
