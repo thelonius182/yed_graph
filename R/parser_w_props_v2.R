@@ -1,16 +1,6 @@
-library(xml2)
-library(dplyr)
-library(purrr)
-library(tibble)
-library(readr)
-library(stringr)
-library(tidyr)
+pacman::p_load(xml2, dplyr, purrr, tibble, readr, stringr, tidyr)
 
-extract_yed_graph <- function(
-    file,
-    property_max_dx = 450,
-    property_max_dy = 320
-) {
+extract_yed_graph <- function(file) {
   doc <- read_xml(file)
   
   ns <- xml_ns(doc)
@@ -267,7 +257,7 @@ extract_yed_graph <- function(
     )
   
   # Helper: are two property boxes close enough to be in the same group?
-  # Uses your rule of thumb:
+  # Uses this rule of thumb:
   # - vertical stack gap <= 1.125 * typical height
   # - adjacent column gap <= 1.125 * typical width
   property_boxes_are_adjacent <- function(a, b, gap_factor = 1.125) {
@@ -455,10 +445,10 @@ extract_yed_graph <- function(
 
 yed <- extract_yed_graph("resources/musiversum_07.graphml")
 
-yed$relations
-yed$node_properties_long
-yed$relation_with_properties
-
-write_csv(yed$relations, "resources/yed_relations.csv")
-write_csv(yed$node_properties_long, "resources/yed_node_properties.csv")
-write_csv(yed$relation_with_properties, "resources/yed_relations_with_properties.csv")
+# yed$relations
+# yed$node_properties_long
+# yed$relation_with_properties
+# 
+# write_csv(yed$relations, "resources/yed_relations.csv")
+# write_csv(yed$node_properties_long, "resources/yed_node_properties.csv")
+# write_csv(yed$relation_with_properties, "resources/yed_relations_with_properties.csv")
